@@ -1,45 +1,37 @@
-package com.example.tmdbapp.ui.home
+package com.example.tmdbapp.ui.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.tmdbapp.model.MovieItem
+import com.example.tmdbapp.model.MovieDetailResponse
 import com.example.tmdbapp.network.ApiClient
 import com.example.tmdbapp.util.Constants
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class DetailViewModel : ViewModel() {
 
-    val movieList: MutableLiveData<List<MovieItem?>?> = MutableLiveData()
+    val movieResponse: MutableLiveData<MovieDetailResponse> = MutableLiveData()
     val isLoading = MutableLiveData(false)
     val errorMessage: MutableLiveData<String?> = MutableLiveData()
 
-    init {
-        getMovieList()
-    }
-
-    fun getMovieList() {
+    fun getMovieDetail(movieId: Int) {
         isLoading.value = true
 
         viewModelScope.launch {
             try {
-                val response = ApiClient.getClient().getMovieList(token = Constants.BEARER_TOKEN)
-
+                val response = ApiClient.getClient()
+                    .getMovieDetail(movieId = movieId.toString(), token = Constants.BEARER_TOKEN)
                 if (response.isSuccessful) {
-                    movieList.postValue(response.body()?.movieItems)
-
+                    movieResponse.postValue(response.body())
                 } else {
-
-                    if (response.message().isNullOrEmpty()){
+                    if (response.message().isNullOrEmpty()) {
                         errorMessage.value = "An unknown error occurred"
                     } else {
                         errorMessage.value = response.message()
                     }
-
                 }
             } catch (e: Exception) {
                 errorMessage.value = e.message
-
             } finally {
                 isLoading.value = false
             }
