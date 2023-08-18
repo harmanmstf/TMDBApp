@@ -47,10 +47,15 @@ class DetailFragment : Fragment() {
         viewModel.movieResponse.observe(viewLifecycleOwner) {movie ->
             with(binding){
                 imageViewDetail.loadImage(movie.backdropPath)
-                textViewDetailVote.text = movie.voteAverage.toString()
+                textViewDetailVote.text = "${movie.voteAverage.toString()} / ${movie.voteCount.toString()}"
                 textViewDetailStudio.text = movie.productionCompanies?.first()?.name
                 textViewDetailLanguage.text = movie.spokenLanguages?.first()?.englishName
                 textViewDetailOverview.text = movie.overview
+                textViewDetailGenre.text = movie.genres?.first()?.name
+                textViewDetailReleasedate.text = "Release Date: ${movie.releaseDate}"
+                textViewDetailRuntime.text = "Runtime: ${movie.runtime.toString()}"
+                textViewDetailBudget.text = "Budget: ${movie.budget.toString()}$"
+                textViewDetailRevenue.text = "Revenue: ${movie.revenue.toString()}$"
                 movieDetailGroup.isVisible = true
 
                 (requireActivity() as MainActivity).supportActionBar?.title = movie.title

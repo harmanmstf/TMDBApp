@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="imageViewDetail, divider, divider2, imageViewVote, textViewDetailVote, imageViewStudio, textViewDetailStudio, imageViewLanguage, textViewDetailLanguage, textViewDetailOverview"
+        app:constraint_referenced_ids="imageViewDetail, divider, divider2, imageViewVote, textViewDetailVote, imageViewStudio, textViewDetailStudio, imageViewLanguage, textViewDetailLanguage, textViewDetailOverview, divider3, textViewDetailGenre, textViewDetailReleasedate, textViewDetailRuntime, textViewDetailBudget, textViewDetailRevenue"
         tools:visibility="visible" />
 
 
@@ -120,14 +120,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
+        app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
     <ProgressBar
         android:id="@+id/progressBarDetail"
@@ -153,4 +153,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="An unknown error occurred" />
+
+    <TextView
+        android:id="@+id/textViewDetailGenre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewDetailLanguage"
+        app:layout_constraintStart_toStartOf="@+id/imageViewVote"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        tools:text="Genres" />
+
+    <TextView
+        android:id="@+id/textViewDetailReleasedate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+
+        app:layout_constraintStart_toStartOf="@+id/textViewDetailGenre"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetailGenre"
+        tools:text="Release Date: 12/12/2022" />
+
+    <TextView
+        android:id="@+id/textViewDetailBudget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewDetailReleasedate"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetailReleasedate"
+        tools:text="Budget: 1900000$" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewDetailBudget"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewDetail"
+        app:layout_constraintStart_toEndOf="@+id/textViewDetailLanguage"
+        app:layout_constraintTop_toTopOf="@+id/textViewDetailReleasedate" />
+
+    <TextView
+        android:id="@+id/textViewDetailRuntime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        tools:text="Runtime: 170"
+        app:layout_constraintStart_toEndOf="@+id/divider3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetailGenre" />
+
+    <TextView
+        android:id="@+id/textViewDetailRevenue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        tools:text="Revenue: 3200000$"
+        app:layout_constraintStart_toEndOf="@+id/divider3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDetailRuntime" />
 </androidx.constraintlayout.widget.ConstraintLayout>
