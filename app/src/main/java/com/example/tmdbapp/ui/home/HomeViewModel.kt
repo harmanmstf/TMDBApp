@@ -30,12 +30,11 @@ class HomeViewModel : ViewModel() {
 
                 } else {
 
-                    if (response.message().isNullOrEmpty()){
+                    if (response.message().isNullOrEmpty()) {
                         errorMessage.value = "An unknown error occurred"
                     } else {
                         errorMessage.value = response.message()
                     }
-
                 }
             } catch (e: Exception) {
                 errorMessage.value = e.message

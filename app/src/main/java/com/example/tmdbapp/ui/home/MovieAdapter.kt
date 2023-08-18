@@ -42,7 +42,5 @@ class MovieAdapter(private val movieList: List<MovieItem?>,private val movieClic
         holder.binding.root.setOnClickListener {
             movieClickListener.onMovieClicked(movieId = movie?.id)
         }
-
-
     }
 }
