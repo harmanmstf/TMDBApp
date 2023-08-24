@@ -1,4 +1,4 @@
-package com.example.tmdbapp.ui.home
+package com.example.tmdbapp.ui.topRated
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,22 +10,26 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.tmdbapp.R
 import com.example.tmdbapp.databinding.FragmentHomeBinding
+import com.example.tmdbapp.databinding.FragmentTopRatedBinding
+
+import com.example.tmdbapp.ui.home.HomeViewModel
+import com.example.tmdbapp.ui.home.MovieAdapter
+import com.example.tmdbapp.ui.home.MovieClickListener
 import com.example.tmdbapp.ui.viewPager.ViewPagerFragmentDirections
 
-class HomeFragment : Fragment() {
-
-    private var _binding: FragmentHomeBinding? = null
+class TopRatedFragment : Fragment() {
+    private var _binding: FragmentTopRatedBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<HomeViewModel>()
-    private lateinit var movieAdapter: MovieAdapter
+    private val viewModel by viewModels<TopRatedViewModel>()
+    private lateinit var movieAdapter: TopRatedAdapter
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentTopRatedBinding.inflate(inflater, container, false)
 
         observeEvents()
         return binding.root
@@ -44,7 +48,7 @@ class HomeFragment : Fragment() {
                 binding.textViewHomeError.text = "There is no movie"
                 binding.textViewHomeError.isVisible = true
             } else {
-                movieAdapter = MovieAdapter(it, object : MovieClickListener {
+                movieAdapter = TopRatedAdapter(it, object : com.example.tmdbapp.ui.topRated.MovieClickListener {
                     override fun onMovieClicked(movieId: Int?) {
                         movieId?.let {
                             val action = ViewPagerFragmentDirections.actionViewPagerFragmentToDetailFragment(it)

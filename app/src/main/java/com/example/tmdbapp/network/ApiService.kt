@@ -15,4 +15,7 @@ interface ApiService {
 
     @GET("{movieId}")
     suspend fun getMovieDetail(@Path("movieId") movieId: String, @Header("Authorization") token : String ) : Response<MovieDetailResponse>
+
+    @GET("top_rated")
+    suspend fun getTopRatedList(@Header("Authorization") token : String): Response<MovieResponse>
 }
